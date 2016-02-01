@@ -58,3 +58,36 @@ def crossSectionalArea(mass):
         return random.triangular(5.3, 11, 8)
     else:
         return 0
+
+
+# Uses Vis-Viva equation to find approx velocity
+def orbitalVelocity(currentDistance):
+    gravitationalConstant = (6.67408 * 10**-11) * 1/(1000**3)
+    massEarth = 5.972 * pow(10, 24)
+    radiusEarth = 6378.1370
+    return (math.sqrt(gravitationalConstant * massEarth *
+            1 / (currentDistance + radiusEarth)))
+
+
+def test(got, expected):
+    if got == expected:
+        prefix = ' OK '
+    else:
+        prefix = '  X '
+    print '%s got: %s expected: %s' % (prefix, repr(got), repr(expected))
+
+
+def tester():
+    print "Orbital Velocity Test:"
+    print test(orbitalDebris.orbitalVelocity(384400), 1.009928142899429)
+    print test(orbitalDebris.orbitalVelocity(867), 7.41706871529025)
+    print
+
+    print "Mass Test"
+    print orbitalDebris.mass()
+    print
+
+    print "Cross Sectional Area Test"
+    print orbitalDebris.crossSectionalArea(60)
+    print orbitalDebris.crossSectionalArea(150)
+    print orbitalDebris.crossSectionalArea(2000)

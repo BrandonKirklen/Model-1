@@ -1,22 +1,4 @@
 
-def debrisRemoval(method, objects, numberOfYears, printOutput=False):
-    # objects = copy.deepcopy(objects)
-    if printOutput:
-        print
-        print "Removal Method: " + method.name
-        print "Objects in Orbit Before: " + str(len(objects))
-    objectsRemoved = 0
-    totalObjectsRemoved = method.removedPerYear * numberOfYears
-    for debris in objects:
-        if (method.withinLimits(debris.mass, debris.altitude) and
-           objectsRemoved < totalObjectsRemoved):
-            objects.remove(debris)
-            objectsRemoved += 1
-    if printOutput:
-        print "Objects in Orbit After: " + str(len(objects))
-    return objects
-
-
 class orbitalRemovalMethod(object):
     # This class holds a method of orbital removal
     def __init__(self, name, massLimit,
@@ -36,3 +18,22 @@ class orbitalRemovalMethod(object):
         withinMass = (mass >= self.massLimit[0] and
                       mass <= self.massLimit[1])
         return (withinAltitude and withinMass)
+
+
+def debrisRemoval(method, objects, numberOfYears, printOutput=False):
+    import copy
+    objects = copy.deepcopy(objects)
+    if printOutput:
+        print
+        print "Removal Method: " + method.name
+        print "Objects in Orbit Before: " + str(len(objects))
+    objectsRemoved = 0
+    totalObjectsRemoved = method.removedPerYear * numberOfYears
+    for debris in objects:
+        if (method.withinLimits(debris.mass, debris.altitude) and
+           objectsRemoved < totalObjectsRemoved):
+            objects.remove(debris)
+            objectsRemoved += 1
+    if printOutput:
+        print "Objects in Orbit After: " + str(len(objects))
+    return objects
