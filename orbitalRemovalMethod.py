@@ -2,7 +2,7 @@
 class orbitalRemovalMethod(object):
     # This class holds a method of orbital removal
     def __init__(self, name, massLimit,
-                 altitudeLimit, removedPerYear, cost=0):
+                 altitudeLimit, removedPerYear, cost=None):
         self.name = name
         self.massLimit = massLimit
         self.altitudeLimit = altitudeLimit
