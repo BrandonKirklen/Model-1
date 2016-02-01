@@ -22,11 +22,11 @@ def main():
     ROIlistEDT = []
     ROIlistEDDE = []
 
-    for i in range(1, 100):
+    for i in range(0, 1000):
         # Sort List
         orbitalObjects.sort(key=operator.attrgetter('weightedRisk'))
         orbitalObjects = risk.normalizeWeightedRisk(orbitalObjects)
-
+        orbitalObjects.reverse()
         # Risk Analysis
         IBSresults = removal.debrisRemoval(IBS, orbitalObjects, 5)
         Propellantresults = removal.debrisRemoval(robotArmPropellant, orbitalObjects, 5)
