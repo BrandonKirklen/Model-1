@@ -1,4 +1,4 @@
-probabilityOfCrash = 1/141.
+probabilityOfCrash = 1/221.
 
 
 # Finds the total risk for a list of orbital objects
@@ -21,6 +21,10 @@ def normalizeWeightedRisk(orbitalObjects):
 # Likelyhood of crash for given mission
 def missionRisk(orbitalObjects):
     return (sumOfRisk(orbitalObjects) * probabilityOfCrash)
+
+
+def reduction(orbitalObjects):
+    return (probabilityOfCrash - missionRisk(orbitalObjects))
 
 
 def reductionFactor(orbitalObjects):
