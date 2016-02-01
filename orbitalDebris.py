@@ -29,6 +29,13 @@ class orbitalDebris(object):
         # Mass weighted Colision risk
         self.weightedRisk = self.risk * self.mass
 
+    #  Randomizes the properties
+    def scramble(self):
+        self.mass = mass()
+        self.crossSectionalArea = crossSectionalArea(self.mass)
+        self.risk = risk(self.velocity, self.crossSectionalArea)
+        self.weightedRisk = self.risk * self.mass
+
 
 # Used to determine the risk of colision
 def risk(velocity, area):
