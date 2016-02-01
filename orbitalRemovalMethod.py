@@ -20,9 +20,10 @@ class orbitalRemovalMethod(object):
         return (withinAltitude and withinMass)
 
 
-def debrisRemoval(method, objects, numberOfYears, printOutput=False):
+def debrisRemoval(method, objects, numberOfYears, printOutput=False, duplicateObjects=True):
     import copy
-    objects = copy.deepcopy(objects)
+    if duplicateObjects:
+        objects = copy.deepcopy(objects)
     if printOutput:
         print
         print "Removal Method: " + method.name
